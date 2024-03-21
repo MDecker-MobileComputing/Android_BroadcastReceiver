@@ -11,7 +11,12 @@ import android.widget.Toast;
 
 /**
  * Unterklasse der abstrakten Klasse {@code BroadcastReceiver}; Empfänger
- * für Broadcast Intents laut Intent Filtern in der Manifest-Datei.
+ * für <i>Broadcast Intents</i> laut Intent Filtern in der Manifest-Datei.
+ *
+ * Ab Android 7+8 können viele <i>Broadcast Intents</i> nur noch mit dynamisch
+ * registrieren Receivern empfangen werden und nicht mehr über Receiver, die
+ * in der Manifest-Datei deklariert wurden.
+ * (<a href="https://developer.android.com/about/versions/oreo/background#broadcasts">Quelle</a>)
  */
 public class MeinBroadcastReceiver extends BroadcastReceiver  {
 
