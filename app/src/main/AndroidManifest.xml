@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
 
+        <!--
         <receiver android:name="de.mide.android.broadcastreceiver.MeinBroadcastReceiver"
                   android:exported="true">
 
-            <!-- Liste der Broadcast Intent vom System:
-                 https://developer.android.com/reference/android/content/Intent -->
             <intent-filter>
                 <action android:name="android.intent.action.BATTERY_LOW"    />
             </intent-filter>
         </receiver>
+        -->
 
     </application>
 

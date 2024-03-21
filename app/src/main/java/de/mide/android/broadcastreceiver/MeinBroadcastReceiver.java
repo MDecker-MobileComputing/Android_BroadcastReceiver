@@ -1,5 +1,7 @@
 package de.mide.android.broadcastreceiver;
 
+import static de.mide.android.broadcastreceiver.MainActivity.TAG4LOGGING;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +14,6 @@ import android.widget.Toast;
  * für Broadcast Intents laut Intent Filtern in der Manifest-Datei.
  */
 public class MeinBroadcastReceiver extends BroadcastReceiver  {
-
-    private static final String TAG4LOGGING = "Empfaenger";
-
 
     /**
      * Einzige abstrakte Methode aus Klasse {@code BroadcastReceiver}; wird für jeden
@@ -29,7 +28,7 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
     public void onReceive(Context context, Intent intent) {
 
         final String actionString = intent.getAction();
-        Log.i(TAG4LOGGING, "Broadcast intent empfangen: " + actionString);
+        Log.i(TAG4LOGGING, "Broadcast Intent empfangen: " + actionString);
 
         switch (actionString) {
 
