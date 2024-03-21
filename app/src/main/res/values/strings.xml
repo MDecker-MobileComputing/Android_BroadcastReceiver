@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Broadcast Receiver</string>
+
+    <string name="main_activity_text">
+        Diese App zeigt für verschiedene <i>Broadcast Intents</i> einen Toast an.
+    </string>
+</resources>
