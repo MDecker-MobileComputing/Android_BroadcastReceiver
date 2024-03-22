@@ -13,6 +13,9 @@ public class MainActivity extends AppCompatActivity {
 
     private MeinBroadcastReceiver _meinBroadcastReceiver = null;
 
+    /**
+     * Lifecycle-Methode: Layout-Datei laden, Broadcast Receiver registrieren.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -25,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG4LOGGING, "Broadcast-Receiver wurde registriert");
     }
 
+
+    /**
+     * Lifecycle-Methode: Broadcast Receiver de-registrieren.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -32,4 +39,5 @@ public class MainActivity extends AppCompatActivity {
         unregisterReceiver(_meinBroadcastReceiver);
         Log.i(TAG4LOGGING, "Broadcast-Receiver wurde deregistriert");
     }
+
 }
