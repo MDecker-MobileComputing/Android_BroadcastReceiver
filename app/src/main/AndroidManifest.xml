@@ -23,16 +23,6 @@
             </intent-filter>
         </activity>
 
-        <!--
-        <receiver android:name="de.mide.android.broadcastreceiver.MeinBroadcastReceiver"
-                  android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.BATTERY_LOW"    />
-            </intent-filter>
-        </receiver>
-        -->
-
     </application>
 
 </manifest>

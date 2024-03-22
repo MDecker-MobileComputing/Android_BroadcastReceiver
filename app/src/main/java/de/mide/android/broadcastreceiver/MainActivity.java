@@ -22,9 +22,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        broadcastReceiverRegistrieren();
+    }
+
+
+    /**
+     * Ein Broadcast-Receiver-Objekt für mehrere Broadcast Intents registrieren.
+     */
+    private void broadcastReceiverRegistrieren() {
+
         _meinBroadcastReceiver = new MeinBroadcastReceiver();
-        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
-        registerReceiver(_meinBroadcastReceiver, intentFilter);
+
+        IntentFilter intentFilter1 = new IntentFilter(Intent.ACTION_BATTERY_LOW       );
+        IntentFilter intentFilter2 = new IntentFilter(Intent.ACTION_POWER_CONNECTED   );
+        IntentFilter intentFilter3 = new IntentFilter(Intent.ACTION_POWER_DISCONNECTED);
+
+        registerReceiver(_meinBroadcastReceiver, intentFilter1);
+        registerReceiver(_meinBroadcastReceiver, intentFilter2);
+        registerReceiver(_meinBroadcastReceiver, intentFilter3);
+
         Log.i(TAG4LOGGING, "Broadcast-Receiver wurde registriert");
     }
 

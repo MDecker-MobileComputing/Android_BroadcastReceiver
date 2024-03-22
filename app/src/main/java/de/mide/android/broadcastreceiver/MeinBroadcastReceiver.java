@@ -38,7 +38,15 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
         switch (actionString) {
 
             case Intent.ACTION_BATTERY_LOW:
-                zeigeNachrichtInToast(context, "Batterie niedrig!");
+                    zeigeNachrichtInToast(context, "Batterie niedrig!");
+                break;
+
+            case Intent.ACTION_POWER_CONNECTED:
+                    zeigeNachrichtInToast(context, "Ladegerät angeschlossen!");
+                break;
+
+            case Intent.ACTION_POWER_DISCONNECTED:
+                zeigeNachrichtInToast(context, "Ladegerät entfernt!");
                 break;
 
             default:
