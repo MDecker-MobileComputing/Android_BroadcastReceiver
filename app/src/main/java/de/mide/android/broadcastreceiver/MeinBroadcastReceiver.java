@@ -122,6 +122,10 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
 
                 zeigeNachrichtInToast(context, "Änderung Konnektivität: Mobilfunk");
 
+                // Für nähere Details zum Netzwerktyp (z.B. 3G oder 4G) würde eine Berechtigung
+                // mit "Protection Level: Dangerous" benötigt, siehe
+                // https://gist.github.com/MDecker-MobileComputing/2254be2a4e286dc65d151a03a6ad1984
+
             } else {
 
                 zeigeNachrichtInToast(context, "Änderung Konnektivität: unbekanntes Netzwerk");
