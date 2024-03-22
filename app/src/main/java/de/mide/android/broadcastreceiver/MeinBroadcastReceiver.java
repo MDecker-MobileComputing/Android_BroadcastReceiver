@@ -5,6 +5,10 @@ import static de.mide.android.broadcastreceiver.MainActivity.TAG4LOGGING;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.os.BatteryManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,10 +24,9 @@ import android.widget.Toast;
  */
 public class MeinBroadcastReceiver extends BroadcastReceiver  {
 
+
     /**
-     * Einzige abstrakte Methode aus Klasse {@code BroadcastReceiver}; wird für jeden
-     * Broadcast-Intent, für den wir uns laut Deklaration in der Manifest-Datei interessieren,
-     * aufgerufen.
+     * Einzige abstrakte Methode aus Klasse {@code BroadcastReceiver}.
      *
      * @param context Context der App
      *
@@ -46,12 +49,87 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
                 break;
 
             case Intent.ACTION_POWER_DISCONNECTED:
-                zeigeNachrichtInToast(context, "Ladegerät entfernt!");
+                    zeigeNachrichtInToast(context, "Ladegerät entfernt!");
+                break;
+
+            case Intent.ACTION_BATTERY_CHANGED:
+                    onAenderungAkku(context, intent);
+                break;
+
+            case ConnectivityManager.CONNECTIVITY_ACTION:
+                    onAenderungKonnektivitaet(context, intent);
                 break;
 
             default:
                 zeigeNachrichtInToast(context,
                               "Unerwarteter Broadcast Intent empfangen: " + actionString);
+                Log.w(TAG4LOGGING, "Unerwarteter Broadcast Intent empfangen: " + intent);
+        }
+    }
+
+
+    /**
+     * Event-Handler-Methode für Änderung Ladestatus Akku.
+     *
+     * <b>Achtung:</b> Event wird bei Veränderungen Akku-Stand im Emulator evtl. sehr oft gefeuert
+     * hintereinander gefeuert!
+     *
+     * @param context Context der App
+     *
+     * @param intent Empfangener Broadcast Intent von Typ {@code ACTION_BATTERY_CHANGED}
+     */
+    private void onAenderungAkku(Context context, Intent intent) {
+
+        int akkuLevelAktuell = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int akkuLevelMax     = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+        int akkuProzent      = 100 * akkuLevelAktuell / akkuLevelMax;
+        String akkuNachricht = "Neuer Akkustand empfangen: " + akkuProzent + "%";
+        Log.i(TAG4LOGGING, akkuNachricht);
+        zeigeNachrichtInToast(context, akkuNachricht);
+    }
+
+
+    /**
+     * Event-Handler-Methode für Änderung Konnektivitäts-Status.
+     * <br><br>
+     *
+     * Die Details werden nicht aus dem Extra des Intents ausgelesen, weil dies
+     * deprecated ist, siehe
+     * <a href="https://developer.android.com/reference/android/net/ConnectivityManager#EXTRA_NETWORK_INFO">hier</a>.
+     * <br><br>
+     *
+     * Für das Auslesen der Netzwerkdetails muss die Berechtigung {@code ACCESS_NETWORK_STATE}
+     * in der Manifest-Datei deklariert werden; es handelt sich dabei um eine Berechtigung mit
+     * "Protection Level: Normal", sie wird also NICHT als Runtime Permission behandelt.
+     *
+     * @param context Context der App
+     *
+     * @param intent Empfangener Broadcast Intent von Typ {@code CONNECTIVITY_ACTION}
+     */
+    private void onAenderungKonnektivitaet(Context context, Intent intent) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network activeNetwork = cm.getActiveNetwork();
+        NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(activeNetwork);
+
+        if (networkCapabilities != null) {
+
+            if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+
+                zeigeNachrichtInToast(context, "Änderung Konnektivität: WiFi");
+
+            } else if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+
+                zeigeNachrichtInToast(context, "Änderung Konnektivität: Mobilfunk");
+
+            } else {
+
+                zeigeNachrichtInToast(context, "Änderung Konnektivität: unbekanntes Netzwerk");
+            }
+
+        } else {
+
+            zeigeNachrichtInToast(context, "Änderung Konnektivität: KEINE");
         }
     }
 
