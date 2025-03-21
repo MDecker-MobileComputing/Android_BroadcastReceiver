@@ -45,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
         final IntentFilter intentFilter2 = new IntentFilter(Intent.ACTION_POWER_CONNECTED          );
         final IntentFilter intentFilter3 = new IntentFilter(Intent.ACTION_POWER_DISCONNECTED       );
         final IntentFilter intentFilter4 = new IntentFilter(Intent.ACTION_BATTERY_CHANGED          );
+        final IntentFilter intentFilter5 = new IntentFilter(Intent.ACTION_TIME_CHANGED);
 
         registerReceiver(_meinBroadcastReceiver, intentFilter1);
         registerReceiver(_meinBroadcastReceiver, intentFilter2);
         registerReceiver(_meinBroadcastReceiver, intentFilter3);
         registerReceiver(_meinBroadcastReceiver, intentFilter4);
+        registerReceiver(_meinBroadcastReceiver, intentFilter5);
 
         Log.i(TAG4LOGGING, "Broadcast-Receiver wurde registriert");
     }

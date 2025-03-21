@@ -56,6 +56,10 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
                     onAenderungAkku(context, intent);
                 break;
 
+            case Intent.ACTION_TIME_CHANGED:
+                zeigeNachrichtInToast(context, "Zeit geändert!");
+                break;
+
             default:
                 String fehlerNachricht = "Unerwarteter Broadcast Intent empfangen: " + actionString;
                 zeigeNachrichtInToast(context, fehlerNachricht);
