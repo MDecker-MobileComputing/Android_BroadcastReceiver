@@ -61,9 +61,9 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
                 break;
 
             default:
-                zeigeNachrichtInToast(context,
-                              "Unerwarteter Broadcast Intent empfangen: " + actionString);
-                Log.w(TAG4LOGGING, "Unerwarteter Broadcast Intent empfangen: " + intent);
+                String fehlerNachricht = "Unerwarteter Broadcast Intent empfangen: " + actionString;
+                zeigeNachrichtInToast(context, fehlerNachricht);
+                Log.w(TAG4LOGGING, fehlerNachricht);
         }
     }
 
