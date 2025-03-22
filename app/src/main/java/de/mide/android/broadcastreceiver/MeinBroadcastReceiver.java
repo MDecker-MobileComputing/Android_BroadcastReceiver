@@ -57,7 +57,12 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
                 break;
 
             case Intent.ACTION_TIME_CHANGED:
-                zeigeNachrichtInToast(context, "Zeit geändert!");
+                    zeigeNachrichtInToast(context, "Zeit geändert!");
+                break;
+
+            case Intent.ACTION_PACKAGE_ADDED:
+                    String packageName = intent.getData().getEncodedSchemeSpecificPart();
+                    zeigeNachrichtInToast( context, "Neue App installiert: " + packageName );
                 break;
 
             default:

@@ -50,11 +50,16 @@ public class MainActivity extends AppCompatActivity {
         final IntentFilter intentFilter4 = new IntentFilter( Intent.ACTION_BATTERY_CHANGED    );
         final IntentFilter intentFilter5 = new IntentFilter( Intent.ACTION_TIME_CHANGED       );
 
+        final IntentFilter intentFilter6 = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
+        intentFilter6.addDataScheme("package");
+        // siehe auch Permission "QUERY_ALL_PACKAGES" in Manifest-Datei
+
         registerReceiver( _meinBroadcastReceiver, intentFilter1 );
         registerReceiver( _meinBroadcastReceiver, intentFilter2 );
         registerReceiver( _meinBroadcastReceiver, intentFilter3 );
         registerReceiver( _meinBroadcastReceiver, intentFilter4 );
         registerReceiver( _meinBroadcastReceiver, intentFilter5 );
+        registerReceiver( _meinBroadcastReceiver, intentFilter6 );
 
         Log.i( TAG4LOGGING, "Broadcast-Receiver wurde registriert" );
     }
