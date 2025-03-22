@@ -2,7 +2,8 @@
 
 <br>
 
-Die Android-App empfängt verschiedene [Broadcast Intents](https://developer.android.com/develop/background-work/background-tasks/broadcasts) empfängt und dann eine entsprechende Nachricht in einem Toast-Objekt anzeigt.
+Die Android-App empfängt verschiedene [Broadcast Intents](https://developer.android.com/develop/background-work/background-tasks/broadcasts) empfängt und dann eine entsprechende 
+Nachricht in einem Toast-Objekt anzeigt.
 
 <br>
 
