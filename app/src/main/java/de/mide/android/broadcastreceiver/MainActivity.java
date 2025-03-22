@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 
+
+/**
+ * Einstiegs-Activity der App, die u.a. die Broadcast-Receiver registriert.
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG4LOGGING = "Empfaenger";
@@ -23,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
      * Lifecycle-Methode: Layout-Datei laden, Broadcast Receiver registrieren.
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_main );
 
         broadcastReceiverRegistrieren();
     }
@@ -41,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
         _meinBroadcastReceiver = new MeinBroadcastReceiver();
 
-        final IntentFilter intentFilter1 = new IntentFilter(Intent.ACTION_BATTERY_LOW              );
-        final IntentFilter intentFilter2 = new IntentFilter(Intent.ACTION_POWER_CONNECTED          );
-        final IntentFilter intentFilter3 = new IntentFilter(Intent.ACTION_POWER_DISCONNECTED       );
-        final IntentFilter intentFilter4 = new IntentFilter(Intent.ACTION_BATTERY_CHANGED          );
-        final IntentFilter intentFilter5 = new IntentFilter(Intent.ACTION_TIME_CHANGED);
+        final IntentFilter intentFilter1 = new IntentFilter( Intent.ACTION_BATTERY_LOW        );
+        final IntentFilter intentFilter2 = new IntentFilter( Intent.ACTION_POWER_CONNECTED    );
+        final IntentFilter intentFilter3 = new IntentFilter( Intent.ACTION_POWER_DISCONNECTED );
+        final IntentFilter intentFilter4 = new IntentFilter( Intent.ACTION_BATTERY_CHANGED    );
+        final IntentFilter intentFilter5 = new IntentFilter( Intent.ACTION_TIME_CHANGED       );
 
-        registerReceiver(_meinBroadcastReceiver, intentFilter1);
-        registerReceiver(_meinBroadcastReceiver, intentFilter2);
-        registerReceiver(_meinBroadcastReceiver, intentFilter3);
-        registerReceiver(_meinBroadcastReceiver, intentFilter4);
-        registerReceiver(_meinBroadcastReceiver, intentFilter5);
+        registerReceiver( _meinBroadcastReceiver, intentFilter1 );
+        registerReceiver( _meinBroadcastReceiver, intentFilter2 );
+        registerReceiver( _meinBroadcastReceiver, intentFilter3 );
+        registerReceiver( _meinBroadcastReceiver, intentFilter4 );
+        registerReceiver( _meinBroadcastReceiver, intentFilter5 );
 
-        Log.i(TAG4LOGGING, "Broadcast-Receiver wurde registriert");
+        Log.i( TAG4LOGGING, "Broadcast-Receiver wurde registriert" );
     }
 
 
@@ -65,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
         super.onDestroy();
 
-        unregisterReceiver(_meinBroadcastReceiver);
-        Log.i(TAG4LOGGING, "Broadcast-Receiver wurde deregistriert");
+        unregisterReceiver( _meinBroadcastReceiver );
+        Log.i( TAG4LOGGING, "Broadcast-Receiver wurde deregistriert" );
     }
 
 }
