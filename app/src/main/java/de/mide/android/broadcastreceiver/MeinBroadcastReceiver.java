@@ -33,31 +33,31 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
      * @param intent Empfangener Broadcast Intent
      */
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive( Context context, Intent intent ) {
 
         final String actionString = intent.getAction();
-        Log.i(TAG4LOGGING, "Broadcast Intent empfangen: " + actionString);
+        Log.i( TAG4LOGGING, "Broadcast Intent empfangen: " + actionString );
 
-        switch (actionString) {
+        switch ( actionString ) {
 
             case Intent.ACTION_BATTERY_LOW:
-                    zeigeNachrichtInToast(context, "Batterie niedrig!");
+                    zeigeNachrichtInToast( context, "Batterie niedrig!" );
                 break;
 
             case Intent.ACTION_POWER_CONNECTED:
-                    zeigeNachrichtInToast(context, "Ladegerät angeschlossen!");
+                    zeigeNachrichtInToast( context, "Ladegerät angeschlossen!" );
                 break;
 
             case Intent.ACTION_POWER_DISCONNECTED:
-                    zeigeNachrichtInToast(context, "Ladegerät entfernt!");
+                    zeigeNachrichtInToast( context, "Ladegerät entfernt!" );
                 break;
 
             case Intent.ACTION_BATTERY_CHANGED:
-                    onAenderungAkku(context, intent);
+                    onAenderungAkku( context, intent );
                 break;
 
             case Intent.ACTION_TIME_CHANGED:
-                    zeigeNachrichtInToast(context, "Zeit geändert!");
+                    zeigeNachrichtInToast( context, "Zeit geändert!" );
                 break;
 
             case Intent.ACTION_PACKAGE_ADDED:
@@ -67,8 +67,8 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
 
             default:
                 String fehlerNachricht = "Unerwarteter Broadcast Intent empfangen: " + actionString;
-                zeigeNachrichtInToast(context, fehlerNachricht);
-                Log.w(TAG4LOGGING, fehlerNachricht);
+                zeigeNachrichtInToast( context, fehlerNachricht );
+                Log.w( TAG4LOGGING, fehlerNachricht);
         }
     }
 
@@ -83,14 +83,14 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
      *
      * @param intent Empfangener Broadcast Intent von Typ {@code ACTION_BATTERY_CHANGED}
      */
-    private void onAenderungAkku(Context context, Intent intent) {
+    private void onAenderungAkku( Context context, Intent intent ) {
 
-        int akkuLevelAktuell = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-        int akkuLevelMax     = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+        int akkuLevelAktuell = intent.getIntExtra( BatteryManager.EXTRA_LEVEL, -1 );
+        int akkuLevelMax     = intent.getIntExtra( BatteryManager.EXTRA_SCALE, -1 );
         int akkuProzent      = 100 * akkuLevelAktuell / akkuLevelMax;
         String akkuNachricht = "Neuer Akkustand empfangen: " + akkuProzent + "%";
-        Log.i(TAG4LOGGING, akkuNachricht);
-        zeigeNachrichtInToast(context, akkuNachricht);
+        Log.i( TAG4LOGGING, akkuNachricht );
+        zeigeNachrichtInToast( context, akkuNachricht );
     }
 
 
@@ -101,9 +101,9 @@ public class MeinBroadcastReceiver extends BroadcastReceiver  {
      *
      * @param nachricht Anzuzeigende Nachricht
      */
-    private static void zeigeNachrichtInToast(Context context, String nachricht) {
+    private static void zeigeNachrichtInToast( Context context, String nachricht ) {
 
-        Toast.makeText(context, nachricht, Toast.LENGTH_LONG).show();
+        Toast.makeText( context, nachricht, Toast.LENGTH_LONG ).show();
     }
 
 }
